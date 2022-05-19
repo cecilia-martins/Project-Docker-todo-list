@@ -11,4 +11,4 @@ COPY . .
 # porta a ser usada
 EXPOSE 3000
 # qual comando executar dentro do contêiner
-CMD npm start
+ENTRYPOINT ["npm", "start"]
