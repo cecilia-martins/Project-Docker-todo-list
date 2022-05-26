@@ -1,25 +1,24 @@
 version: '3'
 
-# os container que vamos subir
 services: 
-  # nome do container que estou trabalhando
+
   todoback:
-    # qual é a imagem desse serviço
+
     image: todobackend
     restart: always
-    # quais são as portas que essa imagem tem?
+
     ports:
       - 3001:3001
     networks:
       - todo-app
-  # outro serviço container
+
   todofront:
-    # depende do container do back
+
     depends_on:
       - todoback
     image: todofrontend
     restart: always
-    # variaveis de ambiente
+
     environment:
       - REACT_APP_API_HOST=todoback
       - REACT_APP_API_PORT=3001
@@ -27,15 +26,15 @@ services:
       - 3000:3000
     networks:
       - todo-app
-    # mais um container
+
   todotests:
-    # depende do front e do back
+
     depends_on:
       - todoback
       - todofront
     image: todotests
     restart: always
-      # variaveis de ambiente
+
     environment:
       - FRONT_HOST=todofront
       - FRONT_PORT=3000
